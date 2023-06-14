@@ -3,8 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString
-
-(CHROME_OPTIONS := Options(), CHROME_OPTIONS.add_argument("--headless"))
+import undetected_chromedriver as uc
 
 class Puller:
     def __init__(self, base_url: str, search_pre: str, search_post: str, cell_class: str, name_class: str, loc_class: str, wrap_req: bool=False):
@@ -16,11 +15,22 @@ class Puller:
         self.loc_class = loc_class
         self.wrap_req = wrap_req
 
+    def __init__(self, options):
+        self.base_url = options["base_url"]
+        self.search_pre = options["search_pre"]
+        self.search_post = options["search_post"]
+        self.cell_class = options["cell_class"]
+        self.name_class = options["name_class"]
+        self.loc_class = options["loc_class"]
+        self.wrap_req = options["wrap_req"]
+
 
     def search_query(self, query: str):
         url_merged = self.base_url + self.search_pre + query + self.search_post
         if self.wrap_req:
-            browser = webdriver.Chrome(options=CHROME_OPTIONS)
+            options = Options()
+            options.headless = True
+            browser = uc.Chrome(options=options)
             browser.get(url_merged)
             rq = browser.page_source
             browser.close()

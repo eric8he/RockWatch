@@ -1,0 +1,28 @@
+{
+    "sites" : [
+        {
+            "name": "E-Rocks",
+            "params": {
+                "base_url": "https://e-rocks.com/",
+                "search_pre": "itemssearch?search=",
+                "search_post": "&op=Submit&form_id=klondike_search_quick_form&sort=ends_at%2Cdesc",
+                "cell_class": "rows-wrapper",
+                "name_class": "item-title",
+                "loc_class": "field-name-taxonomy-flat-self-label",
+                "wrap_req": true
+            }
+        },
+        {
+            "name": "Minfind",
+            "params": {
+                "base_url": "https://www.minfind.com/",
+                "search_pre": "search.php?qs=",
+                "search_post": "&orderby=1",
+                "cell_class": "minbox",
+                "name_class": "minboxmin",
+                "loc_class": "minboxloc",
+                "wrap_req": true
+            }
+        }
+    ]
+}
